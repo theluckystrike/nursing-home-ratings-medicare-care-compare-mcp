@@ -50,7 +50,7 @@ test('query URLs: conditions, array values, operators and the limit', () => {
   const u = queryUrl(DS.provider, { conditions: [{ property: 'state', value: 'VT' }, { property: 'latitude', value: ['44.1', '44.9'], operator: 'between' }], properties: ['provider_name'], limit: 1500 });
   assert.equal(u, 'https://data.cms.gov/provider-data/api/1/datastore/query/4pq5-n9py/0?limit=1500&properties[]=provider_name&conditions[0][property]=state&conditions[0][value]=VT' +
     '&conditions[1][property]=latitude&conditions[1][value][0]=44.1&conditions[1][value][1]=44.9&conditions[1][operator]=between&schema=false');
-  assert.match(queryUrl(DS.provider, { conditions: [{ property: 'provider_name', value: '%Rehab & Health%', operator: 'LIKE' }] }), /value=%25Rehab%20%26%20Health%25&conditions\[0\]\[operator\]=LIKE/);
+  assert.match(queryUrl(DS.provider, { conditions: [{ property: 'provider_name', value: '%Rehab & Health%', operator: 'LIKE' }] }), /\[value\]=%25Rehab%20%26%20Health%25&conditions\[0\]\[operator\]=LIKE/);
   assert.equal(stateCode('vermont'), 'VT'); assert.equal(stateCode('vt'), 'VT'); assert.equal(stateCode(undefined), undefined); assert.throws(() => stateCode('Vermontia'), InputError);
   assert.match(footnote('18'), /Special Focus Facility/); assert.match(footnote('99'), /CMS footnote 99/);
   assert.equal(Math.round(miles(44.4806, -73.207, 44.357, -73.248) * 10) / 10, 8.8);
