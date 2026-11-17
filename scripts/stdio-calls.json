@@ -1,0 +1,5 @@
+[
+  ["nursing_home_search", {"zip": "05401", "radius_miles": 10}],
+  ["nursing_home_ratings", {"ccn": "475014"}],
+  ["nursing_home_compare", {"facilities": [{"ccn": "475014"}, {"ccn": "475003"}]}]
+]

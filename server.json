@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.theluckystrike/nursing-home-ratings-medicare-care-compare-mcp",
+  "title": "Nursing Home Ratings MCP",
+  "description": "Medicare Care Compare nursing home star ratings, staffing, inspections and fines for US facilities.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/theluckystrike/nursing-home-ratings-medicare-care-compare-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://nursing-home-ratings-medicare-care-compare-mcp.lipmichal.workers.dev/mcp"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "nursing-home-ratings-medicare-care-compare-mcp",
+  "version": "1.0.0",
+  "description": "Nursing home ratings MCP server: Medicare Care Compare star ratings (overall, health inspection, staffing, quality measures), staffing hours, staff turnover, inspection deficiencies, fines and abuse flags for every US nursing home. Hosted, no key.",
+  "type": "module",
+  "license": "MIT",
+  "author": "theluckystrike",
+  "mcpName": "io.github.theluckystrike/nursing-home-ratings-medicare-care-compare-mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theluckystrike/nursing-home-ratings-medicare-care-compare-mcp"
+  },
+  "homepage": "https://www.mcpstamp.com/servers/",
+  "bin": {
+    "nursing-home-ratings-medicare-care-compare-mcp": "dist/stdio.js"
+  },
+  "main": "dist/stdio.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test",
+    "start": "node dist/stdio.js",
+    "deploy": "npx wrangler@4 deploy",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "nursing-home-ratings",
+    "nursing-homes",
+    "care-compare",
+    "medicare",
+    "cms",
+    "star-ratings",
+    "skilled-nursing",
+    "long-term-care",
+    "elder-care",
+    "cloudflare-workers"
+  ]
+}
