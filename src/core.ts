@@ -430,7 +430,7 @@ export async function nursingHomeRatings(f: FetchText, a: { ccn?: string; name?:
     parts.push(`Nurse staffing ${S.total_nurse_hours_per_resident_day} hours per resident per day (${STATES[d.state] ?? d.state} ${st?.total_nurse_hours_per_resident_day ?? '-'}, US ${us?.total_nurse_hours_per_resident_day ?? '-'}), RN ${S.rn_hours_per_resident_day ?? '-'}` +
       `${S.nursing_staff_turnover_pct !== null ? `; nursing staff turnover ${S.nursing_staff_turnover_pct}% (US ${us?.nursing_staff_turnover_pct ?? '-'}%)` : ''}.`);
   const I = d.inspections;
-  if (I.last_standard_inspection) parts.push(`Last standard inspection ${I.last_standard_inspection}: ${I.cycle_1_health_deficiencies ?? 0} health deficiencies in the latest cycle (US average ${us?.cycle_1_health_deficiencies ?? '-'}).` +
+  if (I.last_standard_inspection) parts.push(`Last standard inspection ${I.last_standard_inspection}: ${I.cycle_1_health_deficiencies ?? 0} health deficienc${I.cycle_1_health_deficiencies === 1 ? 'y' : 'ies'} in the latest cycle (US average ${us?.cycle_1_health_deficiencies ?? '-'}).` +
     `${harm || ij ? ` ${harm} cited deficienc${harm === 1 ? 'y' : 'ies'} caused actual harm${ij ? ` and ${ij} put residents in immediate jeopardy` : ''} over the last 3 cycles.` : ''}`);
   const P = d.penalties_3_years;
   parts.push(P.fines ? `${P.fines} fine${P.fines === 1 ? '' : 's'} totaling ${money(P.fines_total_usd ?? 0)} in the last 3 years${penalties[0] ? `; latest ${penalties[0].type.toLowerCase()} ${penalties[0].fine_usd ? money(penalties[0].fine_usd) + ' ' : ''}on ${penalties[0].date}` : ''}.` : 'No fines in the last 3 years.');
@@ -477,7 +477,7 @@ export async function nursingHomeCompare(f: FetchText, a: { facilities: { ccn?: 
     fewest_deficiencies: best('cycle_1_health_deficiencies', -1), lowest_fines_usd: best('fines_total_usd', -1),
   };
   const lines = cmp.map((c) => `${c.name} (${c.city}, ${c.state}): overall ${c.overall ?? 'not rated'}, inspections ${c.health_inspection ?? '-'}, staffing ${c.staffing ?? '-'}, quality ${c.quality_measures ?? '-'}; ` +
-    `${c.total_nurse_hours_per_resident_day ?? '-'} nurse hours per resident day, turnover ${c.nursing_staff_turnover_pct ?? '-'}%, ${c.cycle_1_health_deficiencies ?? '-'} deficiencies, fines ${money(c.fines_total_usd ?? 0)}` +
+    `${c.total_nurse_hours_per_resident_day ?? '-'} nurse hours per resident day, turnover ${c.nursing_staff_turnover_pct ?? '-'}%, ${c.cycle_1_health_deficiencies ?? '-'} deficienc${c.cycle_1_health_deficiencies === 1 ? 'y' : 'ies'}, fines ${money(c.fines_total_usd ?? 0)}` +
     `${c.special_focus_status ? `, ${c.special_focus_status}` : ''}${c.abuse_icon ? ', abuse icon' : ''}`);
   const top = leaders.overall ? `Highest overall rating: ${leaders.overall.facilities.join(' and ')} (${leaders.overall.value} stars).` : 'None of these is rated overall.';
   return {
